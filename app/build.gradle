@@ -1,0 +1,56 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 32
+
+    defaultConfig {
+        applicationId "com.cloudpos.tlsv13"
+        minSdkVersion 23
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    //load local aar step2
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    //load local aar step2
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi-v7a'   //only include armeabi-v7a
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    //load local aar step3
+    implementation(name: 'conscrypt-android-2.5.2', ext: 'aar')
+
+//    implementation 'org.conscrypt:conscrypt-android:2.5.2'
+}
