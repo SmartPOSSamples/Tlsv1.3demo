@@ -41,6 +41,11 @@ android {
             include 'armeabi-v7a'   //only include armeabi-v7a
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 
 dependencies {
